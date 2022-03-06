@@ -81,6 +81,4 @@ public class ProductVO {
 	public void setIndate(Timestamp indate) {
 		this.indate = indate;
 	}
-    
-    
 }

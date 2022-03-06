@@ -19,6 +19,7 @@ public class ProductService {
 		return list;
 	}
 
+	
 	public List<ProductVO> getBestList() {
 		List<ProductVO> list = pdao.getBestList();
 		return list;

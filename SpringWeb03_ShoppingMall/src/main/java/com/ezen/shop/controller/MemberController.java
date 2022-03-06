@@ -23,6 +23,7 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(Model model, HttpServletRequest request) {
 		String id = request.getParameter("id");
@@ -46,20 +47,4 @@ public class MemberController {
 			return "member/login";
 		}
 	}
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

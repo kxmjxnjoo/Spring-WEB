@@ -42,8 +42,6 @@ select * from product;
 
 
 
-
-
 -- 쇼핑몰 관리자 테이블
 CREATE TABLE worker (
 	id varchar2(20) NOT NULL,
@@ -54,7 +52,6 @@ CREATE TABLE worker (
 );
 
 select * from worker;
-
 
 
 
@@ -77,11 +74,8 @@ select * from cart;
 
 
 
-
-
-
 -- 주문 테이블
--- orders 테이블과 order_detail 테이블로 나뉘어 집니다.
+-- orders 테이블과 order_detail 테이블로 나뉘어짐
 
 -- orders 테이블에는 한번에 주문에 필요한 주문자 아이디와 시쿼스에서 부여받은 주문번호 그리고 주문 일자만 저장됩니다
 -- 한번의 주문에 두개이상의 상품을 같이 주문할 수 있기때문입니다
@@ -99,8 +93,6 @@ drop sequence orders_seq;
 create sequence orders_seq start with 1;
 
 select * from orders;
-
-
 
 
 
@@ -122,10 +114,6 @@ select * from order_detail;
 
 
 
-
-
-
-
 alter table address drop primary key cascade;
 drop table address purge;
 CREATE TABLE address (
@@ -138,8 +126,6 @@ CREATE TABLE address (
 );
 
 select * from address;
-
-
 
 
 
@@ -164,6 +150,7 @@ select * from qna;
 
 
 ------------------------------------------------ 샘플 데이터 입력------------------------------------
+
 
 -- 관리자 입력
 insert into worker values('admin', 'admin', '관리자', '010-7777-7777');
@@ -229,8 +216,6 @@ insert into order_detail(odseq, oseq, pseq, quantity) values(order_detail_seq.ne
 
 
 
-
-
 -- Qna 추가
 insert into qna (qseq, subject, content, id) 
 values(qna_seq.nextval, '배송관련 문의입니다', '현재 배송상태와 예상 배송일을 답변 부탁합니다', 'hong5');
@@ -268,7 +253,6 @@ select * from cart_view;
 
 
 
-
 -- orders 와 order_detail 의 join 으로 
 -- 1. 주문번호(oseq)에 따른 주문상품들의 표시 
 -- 2. 상품번호에 따른 상품 이름과 가격 등의 정보 표시
@@ -282,9 +266,6 @@ from orders o, order_detail d, member m, product p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 
 select * from order_view;
-
-
-
 
 
 
@@ -316,17 +297,9 @@ where  rownum <=4;
 
 
 
-
 select * from cart;
 
 select * from cart_view;
-
-
-
-
-
-
-
 
 
 
@@ -343,9 +316,6 @@ select distinct oseq, result from order_view where id='scott'  order by result, 
 
 
 
-
-
-
 select * from worker;
 select * from member;
 select * from product;
@@ -357,21 +327,3 @@ select * from order_view;
 select * from qna;
 select * from best_pro_view;
 select * from new_pro_view;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

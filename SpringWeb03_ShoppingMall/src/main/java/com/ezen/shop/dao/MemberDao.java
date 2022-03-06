@@ -20,6 +20,8 @@ public class MemberDao {
 	public MemberDao( ComboPooledDataSource dataSource ) {
 		this.template = new JdbcTemplate(dataSource);
 	}
+	
+	
 	public MemberVO getMember(String id) {
 		String sql = "Select * from member where id=?";
 		List<MemberVO> list = null;
@@ -42,5 +44,4 @@ public class MemberDao {
 		if( list.size()==0) return null;
 		else return list.get(0);
 	}
-
 }

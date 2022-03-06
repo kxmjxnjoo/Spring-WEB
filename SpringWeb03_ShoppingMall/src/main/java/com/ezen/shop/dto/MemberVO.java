@@ -67,7 +67,4 @@ public class MemberVO {
 	public void setIndate(Timestamp indate) {
 		this.indate = indate;
 	}
-    
-    
-
 }

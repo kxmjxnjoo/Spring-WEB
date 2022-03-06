@@ -15,22 +15,22 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Repository
 public class ProductDao {
 
-	// 데이터베이스에서 데이터의 삽입, 수정, 삭제, 조회 (CRUD) 를 담당할 객체를 선언합니다
-	private JdbcTemplate template;  // 이안에  con, pstmt, rs  가 모두 존재합니다
+	// 데이터베이스에서 데이터의 삽입, 수정, 삭제, 조회 (CRUD) 를 담당할 객체를 선언
+	private JdbcTemplate template;  //내부에  con, pstmt, rs  가 모두 존재함
 	
 	/*
-	// 스프링 컨테이너에 수동으로 넣어놓은  DBCP 연결 인스턴스를 꺼내옵니다.
+	// 스프링 컨테이너에 수동으로 넣어놓은  DBCP 연결 인스턴스를 꺼내옴
 	@Autowired
 	ComboPooledDataSource dataSource;	
 	
-	// dataSource 를 이용하여,  template 객체를 수동으로 초기화를 해야하는 상황이므로,
-	// 생성자 생성자에서 초기화합니다
+	// dataSource 를 이용, template 객체를 수동으로 
+	 초기화를 해야하는 상황으로 생성자 생성자에서 초기화함
 	public ProductDao() {
 		this.template = new JdbcTemplate(dataSource);
 	}
 	*/
 	
-	@Autowired   // Autowired 로 빈을 꺼내와서 담는 동작은 생성자의 전달인수에도 가능합니다
+	@Autowired   //Autowired 로 빈을 꺼내와서 담는 동작은 생성자의 전달인수에도 가능
 	public ProductDao( ComboPooledDataSource dataSource ) {
 		this.template = new JdbcTemplate(dataSource);
 	}
@@ -52,15 +52,12 @@ public class ProductDao {
 				pvo.setName(rs.getString("name"));
     	    	pvo.setPrice2(rs.getInt("price2"));
     	    	pvo.setImage(rs.getString("image"));
-				
     	    	return pvo;
 			}
 		});
 		return list;
 	}
 
-	
-	
 	
 	
 	public List<ProductVO> getBestList() {
@@ -76,26 +73,7 @@ public class ProductDao {
     	    	pvo.setImage(rs.getString("image"));
 				return pvo;
 			}
-			
 		});
 		return list;
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
