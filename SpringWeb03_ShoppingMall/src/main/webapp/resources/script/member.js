@@ -18,25 +18,25 @@ function go_next(){
 	//자바스크립트에서 jsp 페이지 내의 radio 버튼을 바라볼때 같은 
 	//name의 ok가 여러개라면 name 값에 의한 배열로 인식되어 사용됨   
 	//동의함 버튼 : okon[0],  동의안함  버튼 : okon[1]  
-	if( document.contractFrm.okon[1].checked == true ){ 
-	 	/* 동의 안함 버튼이 선택된 상태  */
+	if( document.formm.okon[1].checked == true ){ 
+	 	/* 동의 안함 버튼 선택된 상태  */
 		alert("회원약관에 동의하셔야 회원으로 가입이 가능합니다");
 	} else {
-		//contractFrm폼에  action과 submit 버튼 없는 것을 스크립트 명령으로 설정, submit 까지 실행
-		document.contractFrm.action = "shop.do?command=joinForm";
-		document.contractFrm.submit();
+		//formm폼에  action과 submit 버튼 없는 것을 스크립트 명령으로 설정, submit 까지 실행
+		document.formm.action = "joinForm";
+		document.formm.submit();
 	}
 }
 
 
 
 function idcheck(){
-	if( document.joinForm.id.value=="" ){
+	if( document.formm.userid.value=="" ){
 		alert("아이디를 입력하고 중복체크를 진행하세요" );
-		documnet.joinForm.id.focus();
+		documnet.joinForm.userid.focus();
 		return;
 	}
-	var url = "shop.do?command=idCheckForm&id=" + document.joinForm.id.value;
+	var url = "idCheckForm?userid=" + document.formm.userid.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url, "IdCheck", opt);	
 }
@@ -69,48 +69,48 @@ function result( zipNum, sido, gugun, dong){
 
 
 function go_save(){
-	if (document.joinForm.id.value == "") {
+	if (document.formm.userid.value == "") {
 		alert("아이디를 입력하여 주세요."); 	    
-	    document.joinForm.id.focus();
-	} else if(document.joinForm.reid.value != document.joinForm.id.value){
+	    document.formm.userid.focus();
+	} else if(document.formm.reid.value != document.joinForm.id.value){
 		alert("아이디 중복확인을 하지 않았습니다");		
-		document.joinForm.id.focus();
-	} else if(document.joinForm.pwd.value == "") {
+		document.formm.id.focus();
+	} else if(document.formm.pwd.value == "") {
 	    alert("비밀번호를 입력해 주세요.");	    
-	    document.joinForm.pwd.focus();
-	} else if(document.joinForm.pwd.value != document.joinForm.pwdCheck.value) {
+	    document.formm.pwd.focus();
+	} else if(document.formm.pwd.value != document.joinForm.pwdCheck.value) {
 	    alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");	    
-	    document.joinForm.pwd.focus();
-	} else if(document.joinForm.name.value == "") {
+	    document.formm.pwd.focus();
+	} else if(document.formm.name.value == "") {
 	    alert("이름을 입력해 주세요.");	    
-	    document.joinForm.name.focus();
-	} else if(document.joinForm.email.value == "") {
+	    document.formm.name.focus();
+	} else if(document.formm.email.value == "") {
 	    alert("이메일을 입력해 주세요.");	   
-	    document.joinForm.email.focus();
+	    document.formm.email.focus();
 	} else{
-		document.joinForm.action = "shop.do";
-	    document.joinForm.submit();
+		document.formm.action = "join";
+	    document.formm.submit();
 	}
 }
 
 
 
 function go_update(){
-	if (document.joinForm.pwd.value == "") {
+	if (document.formm.pwd.value == "") {
 	    alert("비밀번호를 입력해 주세요.");
-	    document.joinForm.pwd.focus();
-	}else if ((document.joinForm.pwd.value != document.joinForm.pwdCheck.value)) {
+	    document.formm.pwd.focus();
+	}else if ((document.formm.pwd.value != document.joinForm.pwdCheck.value)) {
 	    alert("비밀번호가 일치하지 않습니다.");
-	    document.joinForm.pwd.focus();
-	}else if (document.joinForm.name.value == "") {
+	    document.formm.pwd.focus();
+	}else if (document.formm.name.value == "") {
 	    alert("이름을 입력해 주세요.");
-	    document.joinForm.name.focus();
-	} else if (document.joinForm.email.value == "") {
+	    document.formm.name.focus();
+	} else if (document.formm.email.value == "") {
 	    alert("이메일을 입력해 주세요.");
-	    document.joinForm.email.focus();
+	    document.formm.email.focus();
 	}else {
-	    document.joinForm.action = "shop.do";
-	    document.joinForm.submit();
+	    document.formm.action = "memberUpdate";
+	    document.formm.submit();
 	}
 }
 

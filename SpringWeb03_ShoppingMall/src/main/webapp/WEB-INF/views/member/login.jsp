@@ -7,7 +7,7 @@
 <article>
 	<form method="post" action="login" name="loginFrm">
 		<fieldset><legend>LogIn</legend>
-		<label>User ID</label><input name="id" type="text"><br> 
+		<label>User ID</label><input name="userid" type="text"><br> 
 		<label>Password</label><input name="pwd" type="password"><br> 
         </fieldset>
         <div id="buttons">
