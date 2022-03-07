@@ -77,6 +77,7 @@ public class ProductDao {
 		return list;
 	}
 
+	
 
 	public List<ProductVO> getKindList(String kind) {
 		String sql = "select * from product";
