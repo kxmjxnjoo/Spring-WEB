@@ -61,11 +61,22 @@ public class ProductController {
 		//model.addAttribute("productKindList", list);
 		//return "product/productKind";
 		
-		mav.addObject("productList", productList);
-		mav.addObject("productList", productList);
+		mav.addObject("productList", ps.getKindList(kind));
+		mav.setViewName("product/productKind");
 		
 		return mav;
+	}
+	
+	
+	
+	@RequestMapping("/productDetail")
+	public ModelAndView productDetail( 
+			@RequestParam("pseq") int pseq) {
 		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("productVO", ps.getProduct(pseq) );
+		mav.setViewName("product/productDetail");
+		return mav;
 	}
 }
 

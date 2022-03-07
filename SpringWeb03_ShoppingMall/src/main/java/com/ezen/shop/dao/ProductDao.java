@@ -80,7 +80,29 @@ public class ProductDao {
 	
 
 	public List<ProductVO> getKindList(String kind) {
-		String sql = "select * from product";
+		String sql = "select * from product where kind=?";
+		List<ProductVO> list = template.query(sql, new RowMapper<ProductVO>() {
+
+			@Override
+			public ProductVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ProductVO pvo = new ProductVO();
+				pvo.setPseq(rs.getInt("pseq"));
+				pvo.setIndate(rs.getTimestamp("indate"));
+				pvo.setName(rs.getString("name"));
+				pvo.setPrice1(rs.getInt("price1"));
+				pvo.setPrice2(rs.getInt("price2"));
+				pvo.setPrice3(rs.getInt("price3"));
+				pvo.setUseyn(rs.getString("useyn"));
+				pvo.setBestyn(rs.getString("useyn"));
+				return pvo;
+			}
+		}, kind);
+		return list;
+	}
+
+
+	public ProductVO getProduct(int pseq) {
+		String sql = "select * from product where pseq=?";
 		List<ProductVO> list = template.query(sql, new RowMapper<ProductVO>() {
 
 			@Override
@@ -88,12 +110,18 @@ public class ProductDao {
 				ProductVO pvo = new ProductVO();
 				pvo.setPseq(rs.getInt("pseq"));
 				pvo.setName(rs.getString("name"));
-				pvo.setPrice1(rs.getInt("price1"));
 				pvo.setIndate(rs.getTimestamp("indate"));
+				pvo.setContent(rs.getString("content"));
+				pvo.setKind(rs.getString("kind"));
+				pvo.setImage(rs.getNString("image"));
+				pvo.setPrice1(rs.getInt("price1"));
+				pvo.setPrice2(rs.getInt("price2"));
+				pvo.setPrice3(rs.getInt("price3"));
 				pvo.setUseyn(rs.getString("useyn"));
+				pvo.setBestyn(rs.getString("bestyn"));
 				return pvo;
 			}
-		});
-		return list;
+		}, pseq);
+		return null;
 	}
 }
