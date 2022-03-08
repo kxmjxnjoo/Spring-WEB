@@ -60,7 +60,7 @@ drop table cart purge;
 
 create table cart (
   cseq         number(10)    primary key,  -- 장바구니 일련번호
-  id             varchar2(16)   references member(id),   -- 주문자 아이디(FK :　member.id) 
+  userid             varchar2(16)   references member(userid),   -- 주문자 아이디(FK :　member.id) 
   pseq        number(5)     references product(pseq),  -- 주문 상품번호(FK :product.pseq) 
   quantity   number(5)     default 1,        -- 주문 수량
   result       char(1)       default '1',      -- 1:미처리(카트에 담김 상태, 주문전)   2:처리(주문완료)
@@ -85,7 +85,7 @@ drop table orders purge;
 
 create table orders(
   oseq        number(10)    primary key,           -- 주문번호  
-  id          varchar2(16)   references member(id), -- 주문자 아이디
+  userid          varchar2(16)   references member(userid), -- 주문자 아이디
   indate      date          default  sysdate       -- 주문일
 );
 
