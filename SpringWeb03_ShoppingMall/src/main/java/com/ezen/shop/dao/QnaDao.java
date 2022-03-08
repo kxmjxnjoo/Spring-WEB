@@ -23,7 +23,7 @@ public class QnaDao {
 	}
 
 	
-	public Object listQna(String userid) {
+	public  List<QnaVO> listQna(String userid) {
 		String sql = "select * from qna where id=? order by qseq desec";
 		List<QnaVO> list = template.query(sql,  new RowMapper<QnaVO>() {
 
@@ -42,5 +42,37 @@ public class QnaDao {
 		}, userid);
 		return list;
 	}
+	
+	
+	
+	public void insertQna(QnaVO qvo, String userid) {
+		String sql = "insert into qna(qseq, subject, content, id) values (qna_seq.nextVal, ?, ?, ?)";
+		int result = template.update(sql, qvo.getSubject(), qvo.getContent(), userid);
+	}
+	
+	
+	
+	public QnaVO getQna(int qseq) {
+		String sql = "select * from qna where qseq=?";
+		List<QnaVO> list = template.query(sql, new RowMapper<QnaVO> () {
+
+			@Override
+			public QnaVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				QnaVO qvo = new QnaVO();
+				qvo.setQseq(qseq);
+				qvo.setSubject(rs.getString("subject"));
+				qvo.setContent(rs.getString("content"));
+				qvo.setId(rs.getString("id"));
+				qvo.setIndate(rs.getTimestamp("indate"));
+				qvo.setReply(rs.getString("reply"));
+				qvo.setRep(rs.getString("rep"));
+				return qvo;
+			}
+		}, qseq);
+		return list.get(0);
+	}
+	
+	
+	
 	
 }

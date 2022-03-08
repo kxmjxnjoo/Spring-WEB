@@ -7,10 +7,10 @@ public class QnaVO {
 	private int qseq;
 	private String subject;
 	private String content;
-	private String id;
-	private Timestamp indate;
 	private String reply;
+	private String id;
 	private String rep;
+	private Timestamp indate;
 	
 	public int getQseq() {
 		return qseq;

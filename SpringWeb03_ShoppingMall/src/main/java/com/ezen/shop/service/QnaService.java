@@ -15,7 +15,7 @@ public class QnaService {
 	QnaDao qdao;
 
 	
-	public Object listQna(String userid) {
+	public List<QnaVO> listQna(String userid) {
 		return qdao.listQna(userid);
 	}
 }
