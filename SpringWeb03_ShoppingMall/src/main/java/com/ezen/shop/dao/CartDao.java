@@ -22,7 +22,7 @@ public class CartDao {
 		this.template = new JdbcTemplate(dataSource);
 	}
 
-	 
+	
 	public void insert(CartVO cvo) {
 		String sql = "insert into cart( cseq, id, pseq, quantity) values( cart_seq.nextVal, ? , ? , ? )";
 		template.update(sql, cvo.getUserid(), cvo.getPseq(), cvo.getQuantity() );		
@@ -48,7 +48,6 @@ public class CartDao {
 				cvo.setIndate(rs.getTimestamp(9));
 				return cvo;
 			}
-			
 		} , userid);
 		return list;
 	}

@@ -10,7 +10,7 @@ public class AdminService {
 
 	@Autowired
 	AdminDao adao;
-	
+
 	public int workerCheck(String workId, String workPwd) {
 		return adao.workerCheck(workId, workPwd);
 	}

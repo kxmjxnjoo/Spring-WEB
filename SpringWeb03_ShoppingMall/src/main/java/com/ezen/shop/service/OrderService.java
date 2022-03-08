@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.shop.dao.OrderDao;
 import com.ezen.shop.dto.CartVO;
+import com.ezen.shop.dto.OrderVO;
 
 @Service
 public class OrderService {
@@ -29,7 +30,26 @@ public class OrderService {
 		return oseq;
 	}
 
+
+	public List<OrderVO> listOrderByOseq(int oseq) {
+		return odao.listOrderByOseq(oseq);
+	}
+
+	
+	public int insertOrderOne(int pseq, int quantity, String userid) {
+		odao.insertOrders( userid );  
+		int oseq = odao.lookupMaxOseq(); 		
+		odao.insertOrderDetailOne( pseq, quantity, oseq);
+		return oseq;
+	}
+
+	
+	public List<Integer> selectSeqOrderIng(String userid) {
+		return odao.selectSeqOrderIng(userid);
+	}
+
+	
 	public List<Integer> oseqListAll(String userid) {
-		return oseqListAll(userid);
+		return odao.oseqListAll(userid);
 	}
 }

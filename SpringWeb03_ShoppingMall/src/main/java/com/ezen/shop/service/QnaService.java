@@ -10,12 +10,22 @@ import com.ezen.shop.dto.QnaVO;
 
 @Service
 public class QnaService {
-	
+
 	@Autowired
 	QnaDao qdao;
 
 	
 	public List<QnaVO> listQna(String userid) {
 		return qdao.listQna(userid);
+	}
+
+	
+	public void insertQna(QnaVO qvo, String userid) {
+		qdao.insertQna(qvo, userid);
+	}
+
+	
+	public QnaVO getQna(int qseq) {
+		return qdao.getQna(qseq);
 	}
 }

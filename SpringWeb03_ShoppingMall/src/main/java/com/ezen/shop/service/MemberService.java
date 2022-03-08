@@ -15,18 +15,22 @@ public class MemberService {
 	@Autowired
 	MemberDao mdao;
 
+	
 	public MemberVO getMember(String id) {
 		return mdao.getMember(id);
 	}
 
-	public List <AddressVO> selectAddressByDong(String dong) {
+	
+	public List<AddressVO> selectAddressByDong(String dong) {
 		return mdao.selectAddressByDong(dong);
 	}
 
+	
 	public void insertMember(MemberVO mvo) {
 		mdao.insert(mvo);
 	}
 
+	
 	public void memberUpdate(MemberVO mvo) {
 		mdao.update(mvo);
 	}

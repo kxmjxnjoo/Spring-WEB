@@ -18,52 +18,50 @@ public class QnaDao {
 	private JdbcTemplate template;
 	
 	@Autowired
-	public QnaDao(ComboPooledDataSource dataSource) {
-		this.template = new JdbcTemplate(dataSource);
+	public QnaDao( ComboPooledDataSource dataSource) {
+		this.template = new JdbcTemplate( dataSource );
 	}
 
 	
-	public  List<QnaVO> listQna(String userid) {
-		String sql = "select * from qna where id=? order by qseq desec";
-		List<QnaVO> list = template.query(sql,  new RowMapper<QnaVO>() {
-
+	public List<QnaVO> listQna(String userid) {
+		String sql = "select * from qna where id=? order by qseq desc";
+		List<QnaVO> list = template.query(sql, new RowMapper<QnaVO>() {
 			@Override
 			public QnaVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 				QnaVO qvo = new QnaVO();
-				qvo.setQseq(rs.getInt("qseq"));
-				qvo.setSubject(rs.getString("subject"));
-				qvo.setContent(rs.getString("content"));
-				qvo.setId(rs.getString("id"));
-				qvo.setIndate(rs.getTimestamp("indate"));
-				qvo.setReply(rs.getString("reply"));
-				qvo.setRep(rs.getString("rep"));
+		    	qvo.setQseq(rs.getInt("qseq"));
+		    	qvo.setSubject(rs.getString("subject"));
+		    	qvo.setContent(rs.getString("content"));
+		    	qvo.setId(rs.getString("id"));
+		    	qvo.setIndate(rs.getTimestamp("indate"));
+		    	qvo.setReply(rs.getString("reply"));
+		    	qvo.setRep(rs.getString("rep"));	
 				return qvo;
 			}
 		}, userid);
 		return list;
 	}
-	
+
 	
 	
 	public void insertQna(QnaVO qvo, String userid) {
-		String sql = "insert into qna(qseq, subject, content, id) values (qna_seq.nextVal, ?, ?, ?)";
+		String sql = "insert into qna (qseq, subject, content, id) values(qna_seq.nextval, ?, ?, ?)";
 		int result = template.update(sql, qvo.getSubject(), qvo.getContent(), userid);
 	}
-	
+
 	
 	
 	public QnaVO getQna(int qseq) {
 		String sql = "select * from qna where qseq=?";
-		List<QnaVO> list = template.query(sql, new RowMapper<QnaVO> () {
-
+		List<QnaVO> list = template.query(sql, new  RowMapper<QnaVO>() {
 			@Override
 			public QnaVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 				QnaVO qvo = new QnaVO();
-				qvo.setQseq(qseq);
+				qvo.setQseq(qseq);     	
 				qvo.setSubject(rs.getString("subject"));
-				qvo.setContent(rs.getString("content"));
+				qvo.setContent(rs.getString("content"));   	
 				qvo.setId(rs.getString("id"));
-				qvo.setIndate(rs.getTimestamp("indate"));
+				qvo.setIndate(rs.getTimestamp("indate"));    
 				qvo.setReply(rs.getString("reply"));
 				qvo.setRep(rs.getString("rep"));
 				return qvo;
@@ -71,8 +69,4 @@ public class QnaDao {
 		}, qseq);
 		return list.get(0);
 	}
-	
-	
-	
-	
 }

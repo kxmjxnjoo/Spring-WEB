@@ -21,6 +21,7 @@ public class CartController {
 	@Autowired
 	CartService cs;
 	
+	
 	@RequestMapping("cartInsert")
 	public String cartInsert( 
 			HttpServletRequest  request,  
@@ -44,6 +45,8 @@ public class CartController {
 		return "redirect:/cartList";
 	}
 	
+	
+	
 	@RequestMapping("/cartList")
 	public ModelAndView cartList( HttpServletRequest request ) {
 		ModelAndView mav = new ModelAndView();
@@ -59,7 +62,7 @@ public class CartController {
 			for( CartVO cvo : list) 
 				totalPrice += cvo.getPrice2() * cvo.getQuantity();
 			
-				// 조회하고 계산된 리스트와 총금액을  mav 에 넣고 cartList.jsp  로 이동. 저장이름은  cartList, totalPrice
+				//조회하고 계산된 리스트와 총금액을  mav 에 넣고 cartList.jsp로 이동. 저장이름 -> cartList, totalPrice
 				mav.addObject("totalPrice" , totalPrice);
 				mav.addObject("cartList" , list);
 				mav.setViewName("mypage/cartList");
@@ -68,7 +71,8 @@ public class CartController {
 	}
 	
 	
-	@RequestMapping("cartDelete")
+	
+	@RequestMapping("/cartDelete")
 	public String cartDelete( @RequestParam("cseq") String [] cseqArr ) {
 		//String[] cseqArr = request.getParameterValues("cseq");
 		
@@ -78,14 +82,3 @@ public class CartController {
 		return "redirect:/cartList";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
