@@ -42,4 +42,5 @@ public class QnaDao {
 		}, userid);
 		return list;
 	}
+	
 }
