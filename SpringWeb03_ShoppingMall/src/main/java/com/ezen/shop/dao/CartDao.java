@@ -56,7 +56,7 @@ public class CartDao {
 
 	
 	public void delete(String cseq) {
-		String sql = "delete * from  cart where cseq=?";
-		
+		String sql = "delete from cart where cseq=?";
+		template.update(sql, cseq);
 	}
 }
