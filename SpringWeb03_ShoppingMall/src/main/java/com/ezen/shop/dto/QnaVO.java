@@ -1,0 +1,57 @@
+package com.ezen.shop.dto;
+
+import java.sql.Timestamp;
+
+public class QnaVO {
+	
+	private int qseq;
+	private String subject;
+	private String content;
+	private String id;
+	private Timestamp indate;
+	private String reply;
+	private String rep;
+	
+	public int getQseq() {
+		return qseq;
+	}
+	public void setQseq(int qseq) {
+		this.qseq = qseq;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Timestamp getIndate() {
+		return indate;
+	}
+	public void setIndate(Timestamp indate) {
+		this.indate = indate;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
+	public String getRep() {
+		return rep;
+	}
+	public void setRep(String rep) {
+		this.rep = rep;
+	}
+}

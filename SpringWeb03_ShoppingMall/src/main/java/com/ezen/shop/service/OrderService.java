@@ -28,4 +28,8 @@ public class OrderService {
 		}
 		return oseq;
 	}
+
+	public List<Integer> oseqListAll(String userid) {
+		return oseqListAll(userid);
+	}
 }
