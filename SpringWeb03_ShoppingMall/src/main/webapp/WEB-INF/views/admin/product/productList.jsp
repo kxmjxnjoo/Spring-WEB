@@ -1,11 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>admin Product List 페이지 입니다</h1>
-</body>
-</html>
+<%@ include file="/resources/admin/header.jsp"%>
+<%@ include file="/resources/admin/sub_menu.jsp"%>
+<article>
+<h1>상품 리스트</h1>
+<form name="frm" method="post">
+<table>
+	<tr><td width="642">
+		상품명<input type="text" name="key" value="${key}">
+				<input class="btn" type="button" name="btn_search" value="검색" onClick="go_search();">
+				<input class="btn" type="button" name="btn_total" value="전체보기 " onClick="go_total();">
+				<input class="btn" type="button" name="btn_write" value="상품등록"  onClick="go_wrt();"></td></tr>
+		</table>	
+<table id="productList">
+			<tr><th>번호</th><th>상품명</th><th>원가</th><th>판매가</th><th>등록일</th><th>사용유무</th></tr>
+			<c:choose>
+				<c:when test="${productListSize<=0}">
+				<tr><td width="100%" colspan="7" align="center" height="23">등록된 상품이 없습니다</td></tr>
+			</c:when>
+			<c:otherwise>
+			<c:forEach items="${productList}" var="productVO">
+				<tr><td height="23" align="center" >${productVO.pseq}</td>
+					<td style="text-align:left; padding-left:50px; padding-right:0px;">
+						<a href="#" onClick="go_detail('${productVO.pseq}')">${productVO.name}</a></td>
+					<td><fmt:formatNumber value="${productVO.price1}"/></td>
+					<td><fmt:formatNumber value="${productVO.price2}"/></td>
+					<td><fmt:formatDate value="${productVO.indate}"/></td>
+					<td><c:choose>
+	      					<c:when test='${productVO.useyn=="n"}'>미사용</c:when>
+	   	 					<c:otherwise>사용</c:otherwise> 
+						</c:choose></td>
+					</tr>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
+</table>
+</form><br>
+</article>
+<%@ include file="/resources/admin/footer.jsp"%>
+<%-- 	<div id="paging" align="center" style="font-size:110%; font-weight:bold;">
+		<c:url var="action" value="adminProductList" />
+		<c:if test="${paging.prev}">
+			<a href="${action}&page=${paging.beginPage-1}">◀</a>&nbsp;
+		</c:if>
+		
+		<c:forEach begin="${paging.beginPage}" end="${paging.endPage}" var="index">
+			<c:choose>
+				<c:when test="${paging.page==index}">
+					<span style="color:red">${index}&nbsp;</span>
+				</c:when>
+				<c:otherwise>
+					<a href="${action}&page=${index}&key=${key}">${index}</a>&nbsp;
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<c:if test="${paging.next}">
+			<a href="${action}&page=${paging.endPage+1}">▶</a>&nbsp;
+		</c:if>
+	</div> --%>
